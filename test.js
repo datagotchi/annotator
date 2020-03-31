@@ -11,9 +11,9 @@ const hummus = require('hummus'),
 const boxX = 545;
 
 annotator.init().then(() => {
-  annotator.addSkills(boxX, 600, ['Angular', 'Node', 'Express']);
-
-  annotator.addSkills(boxX, 465, ['Angular', 'Typescript', 'Node', 'Express']);
+  // annotator.addSkills(boxX, 600, ['Angular', 'Node', 'Express']);
+  // annotator.addSkills(boxX, 465, ['Angular', 'Typescript', 'Node', 'Express']);
+  annotator.addSkillText(174, 621, 'Huzzah', 50);
 
   pageModifier.endContext().writePage();
   pdfWriter.end();

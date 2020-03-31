@@ -42,11 +42,11 @@ class Annotator {
     });
   }
 
-  addSkillText(x, y, text) {
+  addSkillText(x, y, text, size = 10) {
     this.context.writeText(
-      `• ${text}`,
+      text,
     	x + 5, y,
-    	{ font: this.arial, size: 10 , color: 0x000000 }
+    	{ font: this.arial, size: size , color: 0x000000 }
     );
   }
 }
