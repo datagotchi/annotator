@@ -1,0 +1,6 @@
+[ 22/03/2020 20:47:14 ] AbstractContentContext::WriteTextCommandWithEncoding, Cannot write text, no current font is defined
+[ 22/03/2020 20:47:36 ] AbstractContentContext::WriteTextCommandWithEncoding, Cannot write text, no current font is defined
+[ 22/03/2020 20:47:36 ] AbstractContentContext::WriteTextCommandWithEncoding, Cannot write text, no current font is defined
+[ 26/03/2020 21:12:43 ] InputFile::OpenFile, Unexpected Failure. Cannot open file for reading - /System/Library/Fonts/Arial Unicode.ttf
+[ 26/03/2020 21:12:43 ] FreeTypeWrapper::FillOpenFaceArgumentsForWideString, Cannot Open file for reading /System/Library/Fonts/Arial Unicode.ttf
+[ 26/03/2020 21:12:43 ] UsedFontsRepository::GetFontForFile, Failed to load font from /System/Library/Fonts/Arial Unicode.ttf
