@@ -17,9 +17,7 @@ class Annotator {
   }
 
   drawRectangle(x, y, width, height) {
-    console.log(`drawRectangle(${x}, ${y}, ${width}, ${height})`);
     this.context.drawRectangle(x, y, width, height);
-    console.log(`done drawing rectangle`);
   }
 
   addSkills(x, y, skills) {
