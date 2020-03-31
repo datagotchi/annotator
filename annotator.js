@@ -38,7 +38,7 @@ class Annotator {
     this.context.writeText(
       `• ${text}`,
     	x + 5, y,
-    	{ font: this.pdfWriter.getFontForFile('/System/Library/Fonts/Supplemental/Arial Unicode.ttf'), size: 10 , color: 0x000000 }
+    	{ font: this.pdfWriter.getFontForFile('./Arial Unicode.ttf'), size: 10 , color: 0x000000 }
     );
   }
 }
