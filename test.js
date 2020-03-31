@@ -10,9 +10,11 @@ const hummus = require('hummus'),
 
 const boxX = 545;
 
-annotator.addSkills(boxX, 600, ['Angular', 'Node', 'Express']);
+annotator.init().then(() => {
+  annotator.addSkills(boxX, 600, ['Angular', 'Node', 'Express']);
 
-annotator.addSkills(boxX, 465, ['Angular', 'Typescript', 'Node', 'Express']);
+  annotator.addSkills(boxX, 465, ['Angular', 'Typescript', 'Node', 'Express']);
 
-pageModifier.endContext().writePage();
-pdfWriter.end();
+  pageModifier.endContext().writePage();
+  pdfWriter.end();
+});

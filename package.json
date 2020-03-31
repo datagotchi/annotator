@@ -1,6 +1,6 @@
 {
   "name": "@datagotchi/annotator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "annotator.js",
   "scripts": {
@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "get-system-fonts": "^2.0.1",
     "hummus": "^1.0.108"
   }
 }

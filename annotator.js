@@ -1,3 +1,5 @@
+const getSystemFonts = require('get-system-fonts');
+
 const boxWidth = 60;
 
 class Annotator {
@@ -6,6 +8,12 @@ class Annotator {
     this.pdfWriter = pdfWriter;
     this.pageModifier = pageModifier;
     this.context = this.pageModifier.startContext().getContext();
+  }
+
+  async init() {
+    this.fontFiles = await getSystemFonts();
+    const arialFile = this.fontFiles.find((fontFile) => fontFile.match('Arial Unicode'));
+    this.arial = this.pdfWriter.getFontForFile(arialFile)
   }
 
   drawBackground(x, y, width, height) {
@@ -38,7 +46,7 @@ class Annotator {
     this.context.writeText(
       `• ${text}`,
     	x + 5, y,
-    	{ font: this.pdfWriter.getFontForFile('./Arial Unicode.ttf'), size: 10 , color: 0x000000 }
+    	{ font: this.arial, size: 10 , color: 0x000000 }
     );
   }
 }
