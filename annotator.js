@@ -1,12 +1,25 @@
 const getSystemFonts = require('get-system-fonts');
+const hummus = require('hummus');
 
 const boxWidth = 60;
 
 class Annotator {
 
-  constructor(pdfWriter, pageModifier) {
-    this.pdfWriter = pdfWriter;
-    this.pageModifier = pageModifier;
+  constructor(inputPath, outputPath, log) {
+    // TODO: change to using streams and/or dynamic PDFs, and then save it after multiple modifications
+    
+    if (inputPath === outputPath) {
+      this.pdfWriter = hummus.createWriterToModify(inputPath, {
+        log: log
+      });
+    } else {
+      this.pdfWriter = hummus.createWriterToModify(inputPath, {
+        modifiedFilePath: outputPath,
+        log: log
+      });
+    }
+
+    this.pageModifier = new hummus.PDFPageModifier(this.pdfWriter, 0, true);
     this.context = this.pageModifier.startContext().getContext();
   }
 
@@ -17,7 +30,7 @@ class Annotator {
   }
 
   drawBackground(x, y, width, height) {
-    this.context.q()
+    return this.context.q()
     			.k(0,0,100,0)
     			.re(x, y, width, height)
     			.f()
@@ -25,7 +38,7 @@ class Annotator {
   }
 
   drawRectangle(x, y, width, height) {
-    this.context.drawRectangle(x, y, width, height);
+    return this.context.drawRectangle(x, y, width, height);
   }
 
   addSkills(x, y, skills) {
@@ -43,11 +56,16 @@ class Annotator {
   }
 
   addSkillText(x, y, text, size = 10) {
-    this.context.writeText(
+    return this.context.writeText(
       text,
-    	x + 5, y,
+    	x, y,
     	{ font: this.arial, size: size , color: 0x000000 }
     );
+  }
+
+  end() {
+    this.pageModifier.endContext().writePage();
+    return this.pdfWriter.end();
   }
 }
 

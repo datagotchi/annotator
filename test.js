@@ -1,20 +1,26 @@
-const hummus = require('hummus'),
-  pdfPath = 'resume.pdf',
-  pdfWriter = hummus.createWriterToModify(pdfPath, {
-    modifiedFilePath: 'resume-modified.pdf',
-    log: 'log.txt'
-  }),
-  pageModifier = new hummus.PDFPageModifier(pdfWriter, 0, true),
-  Annotator = require('./annotator'),
-  annotator = new Annotator(pdfWriter, pageModifier);
+let inputPath = 'resume.pdf',
+  outputPath = 'resume-modified.pdf',
+  logFile = 'hummus-log.txt',
+  Annotator = require('./annotator');
 
 const boxX = 545;
 
-annotator.init().then(() => {
-  // annotator.addSkills(boxX, 600, ['Angular', 'Node', 'Express']);
-  // annotator.addSkills(boxX, 465, ['Angular', 'Typescript', 'Node', 'Express']);
-  annotator.addSkillText(174, 621, 'Huzzah', 50);
+async function runTest(x, y, text) {
+  let annotator = new Annotator(inputPath, outputPath, logFile);
+  return annotator.init().then(() => {
+    annotator.addSkillText(x, y, text, 50);
 
-  pageModifier.endContext().writePage();
-  pdfWriter.end();
+    return annotator.end();
+  });
+}
+
+console.log("Write test #1...");
+runTest(174, 600, 'Huzzah1').then(() => {
+  inputPath = outputPath;
+}).then(() => {
+  console.log("Write test #2...");
+  return runTest(200, 621, 'Huzzah2');
+}).then(() => {
+  console.log("Tests complete");
 });
+// FIXME: still segfaults...
